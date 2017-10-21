@@ -1,3 +1,37 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+
+  <div class="media" *ngIf="user">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" style="height:100px" src="{{user.photoURL}}" alt="user.displayName">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{ user.displayName }}</h4>
+      <h6>{{ user.email }}</h6>
+    </div>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  
+    <div *ngIf="message">
+      <div class="row">
+        <pre>{{ message | json }}</pre>
+      </div>
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" style="height:100px" src="{{message.notification.icon}}" alt="{{message.notification.title}}">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">{{ message.notification.title }}</h4>
+        <h6>{{ message.notification.body }}</h6>
+      </div>
+    </div>
+    
+
+  </div>
+
+  <div *ngIf="!user">
+    <button class="btn btn-warning" (click)="loginWithGoogle()">Login With Google</button>
+  </div>
+
+</div>
